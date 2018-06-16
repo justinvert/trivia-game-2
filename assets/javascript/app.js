@@ -43,27 +43,37 @@
        counters.innerHTML = "Time Remaining: " + countdown + " seconds";
 }
 
-else if (countdown = 0){
+else if (countdown === 0) {
     clearInterval(counting);
-   
-   
-    
+    quizEnd();
+    disable();
+    quizEnd2();
+    disable2();
+    quizEnd3();
+    disable3();
+    quizEnd4();
+    disable4();
  
 
 }
-else {
-        clearInterval(counting);
-        disable();
-    
-      play = false; 
-        disable2();
-        quizEnd2();
-     
-        // disable2();
-        // disable3();
-        // disable4();
 
-         }
+
+// else  {
+//         clearInterval(counting);
+       
+        
+//         // disable();
+//     //    
+//     //   play = false; 
+   
+//         disable2();
+//         quizEnd2();
+     
+//         // disable2();
+//         // disable3();
+//         // disable4();
+
+//          }
          
         
     }
@@ -134,7 +144,7 @@ function quizNew2(){
         "</form>" ;
         $('#question2').hide();
         $('#testAnswers').hide();
-        clearTimeout(myVar2);
+        clearTimeout(myVar3);
         countdown = 10;
 }
 function quizNew3(){
@@ -164,45 +174,67 @@ function quizNew3(){
  var myVar2;
  var myVar3;
  var myVar4;
- var correct = 0; var play = false;
+ var correct = 0; 
+// var play = false;
     function quizCheck(){
       
         var correctAnswer1 = document.quiz.firstQuestion.value;
-       
-        countdown = 0;
-        if (correctAnswer1 === "A"){
+      
+        countdown = null;
+        if (correctAnswer1 === "A" && countdown === null){
        
             document.getElementById("testAnswers").innerHTML = quiz1[0] + " is the correct answer!";
             document.getElementById("question1").style.color = 'green';
             myVar = setTimeout(quizNew, 5000); 
             correct++;
             stopCount();
-          
+         countdown = null;
            document.getElementById("stats").innerHTML = "Status so far: " + correct + " out of 4 correct";
-        play = true;
+        // play = true;
     }
 
-    else{
-      
-       play = false;
-        document.getElementById("testAnswers").innerHTML = quiz1[0] + " was the correct answer";
-        document.getElementById("question1").style.color = 'red';
+  else   {
+    quizEnd();
+    disable();
+     
       }
 }
 
 function quizEnd(){
 
-    var play = true;
+    
     document.getElementById("question1").style.color = 'red';
     document.getElementById("testAnswers").innerHTML = quiz1[0] + " was the correct answer";
     stopCount();
       myVar = setTimeout(quizNew, 5000);
       document.getElementById("stats").innerHTML = "Status so far: " + correct + " out of 4 correct";
 
-      if (correctAnswer1 === "A"){
-          play = false;
-        }
+
     }
+
+    function quizEnd3(){
+
+    
+        document.getElementById("question3").style.color = 'red';
+        document.getElementById("testAnswers").innerHTML = quiz3[1] + " was the correct answer";
+        stopCount();
+          myVar3 = setTimeout(quizNew3, 5000);
+          document.getElementById("stats").innerHTML = "Status so far: " + correct + " out of 4 correct";
+    
+    
+        }
+
+        function quizEnd4(){
+
+    
+            document.getElementById("question4").style.color = 'red';
+            document.getElementById("testAnswers").innerHTML = quiz4[3] + " was the correct answer";
+            stopCount();
+              myVar4 = setTimeout(quizNew4, 5000);
+              document.getElementById("stats").innerHTML = "Status so far: " + correct + " out of 4 correct";
+        
+        
+            }
 
 
 function quizEnd2(){
@@ -215,118 +247,70 @@ function quizEnd2(){
 
     function quizCheck2(){
 var correctAnswer2 = document.quiz2.secondQuestion.value;
-
-      if (correctAnswer2 === "C"){
+countdown = null;
+      if (correctAnswer2 === "C" && countdown === null){
         document.getElementById("testAnswers").innerHTML = quiz2[2] + " is the correct answer!";
         document.getElementById("question2").style.color = 'green';
         correct++;
+        countdown = null;
         stopCount();
         myVar2 = setTimeout(quizNew2, 5000);
         document.getElementById("stats").innerHTML = "Status so far: " + correct + " out of 4 correct";
-        return false
+    
    
     }
 
-    else{ 
-    document.getElementById("testAnswers").innerHTML = quiz2[2] + " was the correct answer";
-    document.getElementById("question2").style.color = 'red';
-    countdown = 0;
-    quizEnd2();
-    }
+    else   {
+        quizEnd2();
+        disable2();
+         
+          }
 
 }
 function quizCheck3(){
     var correctAnswer3 = document.quiz3.thirdQuestion.value;
-    if (correctAnswer3 === "A"){
-      
-            document.getElementById("testAnswers3").innerHTML = quiz3[0] + " is incorrect.";
-            document.getElementById("question3").style.color = 'red';
-
-            $('#question3').delay(5000);
-            $('#testAnswers').delay(5000);
-            myVar = setTimeout(quizNew3, 5000);
-            return false
-    }
-
+    countdown = null;
+   
    if (correctAnswer3 === "B"){
       document.getElementById("testAnswers3").innerHTML = quiz3[1] + " is the correct answer!";
         document.getElementById("question3").style.color = 'green';
         correct++;
-        
-        $('#question3').delay(5000).hide(1)
+        countdown = null;
          
-            
-        setTimeout(quizNew3, 5000);
-        
-    }
-
-      if (correctAnswer3 === "C"){
-      
-       document.getElementById("testAnswers3").innerHTML = quiz3[2] + " is incorrect.";
-        document.getElementById("question3").style.color = 'red';
-           
-        $('#question3').delay(5000).hide()
-         
-            
-        setTimeout(quizNew3, 5000);
-    }
-
-     if (correctAnswer3 === "D"){
-        document.getElementById("testAnswers3").innerHTML = quiz3[3] + " is incorrect.";
-        document.getElementById("question3").style.color = 'red';
-           
-        $('#question3').delay(5000).hide()
-         
-            
-        setTimeout(quizNew3, 5000);
-   
+        myVar3 = setTimeout(quizNew3, 5000); 
+        correct++;
+        stopCount();
+     
+       document.getElementById("stats").innerHTML = "Status so far: " + correct + " out of 4 correct";
+    
     }
     else
 {
-   document.getElementById("question3").style.color = 'red';
-}
+quizEnd3();
 disable3();
 
 }
 function quizCheck4(){
 var correctAnswer4 = document.quiz4.fourthQuestion.value;
-     if (correctAnswer4 === "A"){
-          
-            document.getElementById("testAnswers4").innerHTML = quiz4[0] + " is incorrect.";
-            document.getElementById("question4").style.color = 'red';
-            $('#question4').delay(5000);
-            $('#testAnswers').delay(5000);
-      
-           
-    }
-
-   if (correctAnswer4 === "B"){
-      document.getElementById("testAnswers4").innerHTML = quiz4[1] + " is incorrect.";
-        document.getElementById("question4").style.color = 'red';
-     
-    }
-
-      if (correctAnswer4 === "C"){
-      
-       document.getElementById("testAnswers4").innerHTML = quiz4[2] + " is incorrect.";
-        document.getElementById("question4").style.color = 'red';
-
-    }
-
+countdown = null;
      if (correctAnswer4 === "D"){
-      
+        countdown = null;
      document.getElementById("testAnswers4").innerHTML = quiz4[3] + " is the correct answer!";
         document.getElementById("question4").style.color = 'green';
+        myVar4 = setTimeout(quizNew4, 10000); 
         correct++;
+        stopCount();
+     
+       document.getElementById("stats").innerHTML = "Status so far: " + correct + " out of 4 correct";
+    
 
      
     }
 else
 {
-   document.getElementById("question4").style.color = 'red';
-}
-disable4();
+    quizEnd4();
+    disable4();
 
 }
   
-
+}}
