@@ -46,18 +46,19 @@
 else if (countdown = 0){
     clearInterval(counting);
    
-    
+   
     
  
 
 }
 else {
         clearInterval(counting);
-    
         disable();
-        quizEnd();
+    
+      play = false; 
         disable2();
         quizEnd2();
+     
         // disable2();
         // disable3();
         // disable4();
@@ -153,7 +154,7 @@ function quizNew3(){
  
  }
     function stopCount(){
-        countdown = null;
+        countdown = 0;
         counters.innerHTML = "";
         document.getElementById("start").innerHTML = "<div style='display:inline;'>Pro-Wrestling Trivia Quiz</div>";
 
@@ -163,38 +164,45 @@ function quizNew3(){
  var myVar2;
  var myVar3;
  var myVar4;
- var correct = 0;
+ var correct = 0; var play = false;
     function quizCheck(){
       
         var correctAnswer1 = document.quiz.firstQuestion.value;
-        
-        
+       
+        countdown = 0;
         if (correctAnswer1 === "A"){
        
             document.getElementById("testAnswers").innerHTML = quiz1[0] + " is the correct answer!";
             document.getElementById("question1").style.color = 'green';
+            myVar = setTimeout(quizNew, 5000); 
             correct++;
             stopCount();
-           myVar = setTimeout(quizNew, 5000);
+          
            document.getElementById("stats").innerHTML = "Status so far: " + correct + " out of 4 correct";
-           return false
+        play = true;
     }
 
     else{
+      
+       play = false;
         document.getElementById("testAnswers").innerHTML = quiz1[0] + " was the correct answer";
         document.getElementById("question1").style.color = 'red';
-        countdown = 0;
-        quizEnd();
       }
 }
 
 function quizEnd(){
+
+    var play = true;
     document.getElementById("question1").style.color = 'red';
     document.getElementById("testAnswers").innerHTML = quiz1[0] + " was the correct answer";
     stopCount();
       myVar = setTimeout(quizNew, 5000);
       document.getElementById("stats").innerHTML = "Status so far: " + correct + " out of 4 correct";
-}
+
+      if (correctAnswer1 === "A"){
+          play = false;
+        }
+    }
 
 
 function quizEnd2(){
